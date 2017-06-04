@@ -24,7 +24,7 @@ namespace MiNET
 
 			dynamic dynaCommands = JObject.Parse(commandJson);
 
-			var t = dynaCommands.difficulty.versions[0].overloads["byName"].output.format_strings;
+			var t = dynaCommands.help.versions[0].overloads["byName"].output.format_strings;
 
 			foreach (var te in dynaCommands)
 			{
@@ -51,15 +51,15 @@ namespace MiNET
 			};
 			var commands = JsonConvert.DeserializeObject<CommandSet>(commandJson /*, new ParameterConverter()*/);
 
-			Assert.AreEqual(72, commands.Count);
+			Assert.AreEqual(51, commands.Count);
 
-			Assert.AreEqual("difficulty", commands.First(pair => pair.Key == "difficulty").Key);
+			Assert.AreEqual("help", commands.First(pair => pair.Key == "help").Key);
 
-			Command command = commands["difficulty"];
+			Command command = commands["help"];
 			Assert.NotNull(command);
 
 			Version version = command.Versions[0];
-			Assert.AreEqual("commands.difficulty.usage", version.Description);
+			Assert.AreEqual("commands.help.description", version.Description);
 
 			Assert.AreEqual(2, version.Overloads.Count);
 
@@ -77,9 +77,9 @@ namespace MiNET
 			Parameter inputParameter = input.Parameters[0];
 
 			Assert.NotNull(inputParameter);
-			Assert.AreEqual("difficulty", inputParameter.Name);
+			Assert.AreEqual("command", inputParameter.Name);
 			Assert.AreEqual("stringenum", inputParameter.Type);
-			//Assert.AreEqual("commandName", inputParameter.EnumType);
+			Assert.AreEqual("commandName", inputParameter.EnumType);
 			Assert.IsFalse(inputParameter.Optional);
 
 			// Output
@@ -87,13 +87,13 @@ namespace MiNET
 
 			Assert.NotNull(output.FormatStrings);
 			Assert.AreEqual(1, output.FormatStrings.Length);
-			Assert.AreEqual("commands.difficulty.success", output.FormatStrings[0].Format);
+			Assert.AreEqual("{0}", output.FormatStrings[0].Format);
 			Assert.NotNull(output.Parameters);
 			Assert.AreEqual(1, output.Parameters.Length);
 
 			Parameter outputParameter = output.Parameters[0];
 
-			Assert.AreEqual("difficulty", outputParameter.Name);
+			Assert.AreEqual("body", outputParameter.Name);
 			Assert.AreEqual("string", outputParameter.Type);
 			Assert.IsNullOrEmpty(outputParameter.EnumType);
 			Assert.IsFalse(outputParameter.Optional);
@@ -112,13 +112,13 @@ namespace MiNET
 			settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
 			var commands = JsonConvert.DeserializeObject<CommandSet>(commandJson, settings);
-			Assert.AreEqual("difficulty", commands.First(pair => pair.Key == "difficulty").Key);
+			Assert.AreEqual("help", commands.First(pair => pair.Key == "help").Key);
 
-			Command command = commands["difficulty"];
+			Command command = commands["help"];
 			Assert.NotNull(command);
 
 			CommandSet toSerialize = new CommandSet();
-			toSerialize["difficulty"] = command;
+			toSerialize["help"] = command;
 
 			var output = JsonConvert.SerializeObject(toSerialize, settings);
 			Console.WriteLine($"{output}");
@@ -204,19 +204,19 @@ namespace MiNET
 				if (i++ >= 6) break;
 			}
 
-			Console.WriteLine("Commands:");
-			foreach (var command in commands)
-			{
-				string result = PluginManager.GetUsage(command.Key, command.Value);
-				Console.WriteLine(result);
-			}
-			{
-				string result = PluginManager.GetUsage("help", commands["help"]);
+			//Console.WriteLine("Commands:");
+			//foreach (var command in commands)
+			//{
+			//	string result = PluginManager.GetUsage(command.Key, command.Value);
+			//	Console.WriteLine(result);
+			//}
+			//{
+			//	string result = PluginManager.GetUsage("help", commands["help"]);
 
-				Assert.AreEqual("/help", result.Split('\n')[0]);
-				Console.WriteLine(result);
+			//	//Assert.AreEqual("/help", result.Split('\n')[0]);
+			//	Console.WriteLine(result);
 
-			}
+			//}
 		}
 	}
 }

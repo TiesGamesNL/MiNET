@@ -213,7 +213,7 @@ namespace MiNET
 			{
 				string result = PluginManager.GetUsage("help", commands["help"]);
 
-				//Assert.AreEqual("/help", result.Split('\n')[0]);
+				Assert.AreEqual("/help", result.Split('\n')[0]);
 				Console.WriteLine(result);
 
 			}

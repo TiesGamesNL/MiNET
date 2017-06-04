@@ -204,19 +204,19 @@ namespace MiNET
 				if (i++ >= 6) break;
 			}
 
-			//Console.WriteLine("Commands:");
-			//foreach (var command in commands)
-			//{
-			//	string result = PluginManager.GetUsage(command.Key, command.Value);
-			//	Console.WriteLine(result);
-			//}
-			//{
-			//	string result = PluginManager.GetUsage("help", commands["help"]);
+			Console.WriteLine("Commands:");
+			foreach (var command in commands)
+			{
+				string result = PluginManager.GetUsage(command.Key, command.Value);
+				Console.WriteLine(result);
+			}
+			{
+				string result = PluginManager.GetUsage("help", commands["help"]);
 
-			//	//Assert.AreEqual("/help", result.Split('\n')[0]);
-			//	Console.WriteLine(result);
+				//Assert.AreEqual("/help", result.Split('\n')[0]);
+				Console.WriteLine(result);
 
-			//}
+			}
 		}
 	}
 }

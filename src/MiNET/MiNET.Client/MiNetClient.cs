@@ -84,29 +84,29 @@ namespace MiNET.Client
 			int iothreads;
 			ThreadPool.GetMinThreads(out threads, out iothreads);
 
-			var client = new MiNetClient(null, "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
-			var client = new MiNetClient(new IPEndPoint(Dns.GetHostEntry("pe.mineplex.com").AddressList[0], 19132), "TheGrey");
-			var client = new MiNetClient(new IPEndPoint(Dns.GetHostEntry("yodamine.net").AddressList[0], 19132), "TheGrey");
-			var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("147.75.192.106"), 19132), "TheGrey");
-			var client = new MiNetClient(new IPEndPoint(IPAddress.Loopback, 19132), "TheGrey");
+			//var client = new MiNetClient(null, "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
+			//var client = new MiNetClient(new IPEndPoint(Dns.GetHostEntry("pe.mineplex.com").AddressList[0], 19132), "TheGrey");
+			//var client = new MiNetClient(new IPEndPoint(Dns.GetHostEntry("yodamine.net").AddressList[0], 19132), "TheGrey");
+			//var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("147.75.192.106"), 19132), "TheGrey");
+			//var client = new MiNetClient(new IPEndPoint(IPAddress.Loopback, 19132), "TheGrey");
 
-			var client = new MiNetClient(null, "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
-			var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("192.168.0.5"), 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
-			var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("192.168.0.3"), 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
+			//var client = new MiNetClient(null, "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
+			//var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("192.168.0.5"), 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
+			//var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("192.168.0.3"), 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
 			var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("192.168.0.255"), 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
-			var client = new MiNetClient(new IPEndPoint(Dns.GetHostEntry("yodamine.net").AddressList[0], 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
-			var client = new MiNetClient(new IPEndPoint(IPAddress.Loopback, 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
+			//var client = new MiNetClient(new IPEndPoint(Dns.GetHostEntry("yodamine.net").AddressList[0], 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
+			//var client = new MiNetClient(new IPEndPoint(IPAddress.Loopback, 19132), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
 
-			var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("54.229.52.56"), 27212), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
+			//var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("54.229.52.56"), 27212), "TheGrey", new DedicatedThreadPool(new DedicatedThreadPoolSettings(Environment.ProcessorCount)));
 
 			// 157.7.202.57:29473
-			var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("157.7.202.57"), 19132), "TheGrey");
+			//var client = new MiNetClient(new IPEndPoint(IPAddress.Parse("157.7.202.57"), 19132), "TheGrey");
 
 			client.StartClient();
 			Log.Warn("Client listening for connecting on: " + client._clientEndpoint);
 			Console.WriteLine("Server started.");
-//test
-			client.SendOpenConnectionRequest1();
+
+			//client.SendOpenConnectionRequest1();
 
 			if (client._serverEndpoint != null)
 			{
@@ -117,68 +117,68 @@ namespace MiNET.Client
 					Thread.Sleep(500);
 				}
 			}
-			else
-			{
-				client.HaveServer = true;
-				client.SendOpenConnectionRequest1();
-				Thread.Sleep(50);
-				client.SendOpenConnectionRequest1();
-				Thread.Sleep(50);
-				client.SendOpenConnectionRequest1();
-			}
+			//else
+			//{
+			//	client.HaveServer = true;
+			//	client.SendOpenConnectionRequest1();
+			//	Thread.Sleep(50);
+			//	client.SendOpenConnectionRequest1();
+			//	Thread.Sleep(50);
+			//	client.SendOpenConnectionRequest1();
+			//}
 
-			Task.Delay(20000).ContinueWith(task =>
-		       {
-				Log.Error("Sending server command");
-				client.SendChat("/server lobby-1");
-			});
+			//Task.Delay(20000).ContinueWith(task =>
+			//{
+			//	Log.Error("Sending server command");
+			//	client.SendChat("/server lobby-1");
+			//});
 
 
-			{
-				McpeAnimate message = new McpeAnimate();
-				message.actionId = 2;
-				message.entityId = client._entityId;
-				client.SendPackage(message);
-			}
-			{
-				McpeUseItem message = new McpeUseItem();
-				message.blockcoordinates = new BlockCoordinates(53, 4, 17);
-				message.face = 4;
-				message.facecoordinates = new Vector3(0.1f, 0.1f, 0.1f);
-				message.playerposition = client.CurrentLocation.ToVector3();
-				message.item = new ItemBlock(new Stone(), 0) {Count = 1};
-				client.SendPackage(message);
-			}
-//test
+			//{
+			//	McpeAnimate message = new McpeAnimate();
+			//	message.actionId = 2;
+			//	message.entityId = client._entityId;
+			//	client.SendPackage(message);
+			//}
+			//{
+			//	McpeUseItem message = new McpeUseItem();
+			//	message.blockcoordinates = new BlockCoordinates(53, 4, 17);
+			//	message.face = 4;
+			//	message.facecoordinates = new Vector3(0.1f, 0.1f, 0.1f);
+			//	message.playerposition = client.CurrentLocation.ToVector3();
+			//	message.item = new ItemBlock(new Stone(), 0) {Count = 1};
+			//	client.SendPackage(message);
+			//}
+
 			Action<Task, Item, BlockCoordinates> doUseItem = BotHelpers.DoUseItem(client);
 			Action<Task, int, Item, int> doSetSlot = BotHelpers.DoContainerSetSlot(client);
 			Action<Task, PlayerLocation> doMoveTo = BotHelpers.DoMoveTo(client);
 			Action<Task, string> doSendCommand = BotHelpers.DoSendCommand(client);
 
-			.ContinueWith(t => doMovePlayer(t, client.CurrentLocation + new Vector3(0, 1.62f, 0)))
-			.ContinueWith(t => doMoveTo(t, client.CurrentLocation + new Vector3(10, 1.62f, 10)))
+			//.ContinueWith(t => doMovePlayer(t, client.CurrentLocation + new Vector3(0, 1.62f, 0)))
+			//.ContinueWith(t => doMoveTo(t, client.CurrentLocation + new Vector3(10, 1.62f, 10)))
 
 			Task.Run(BotHelpers.DoWaitForSpawn(client))
 				.ContinueWith(t => BotHelpers.DoMobEquipment(client)(t, new ItemBlock(new Cobblestone(), 0) {Count = 64}, 0))
-				.ContinueWith(t => BotHelpers.DoMoveTo(client)(t, new PlayerLocation(client.CurrentLocation.ToVector3() - new Vector3(0, 1, 0), 180, 180, 180)))
-				.ContinueWith(t => doMoveTo(t, new PlayerLocation(40, 5.62f, -20, 180, 180, 180)))
+				//.ContinueWith(t => BotHelpers.DoMoveTo(client)(t, new PlayerLocation(client.CurrentLocation.ToVector3() - new Vector3(0, 1, 0), 180, 180, 180)))
+				//.ContinueWith(t => doMoveTo(t, new PlayerLocation(40, 5.62f, -20, 180, 180, 180)))
 				.ContinueWith(t => doMoveTo(t, new PlayerLocation(22, 5.62, 40, 180+45, 180+45, 180)))
-				.ContinueWith(t => doMoveTo(t, new PlayerLocation(50, 5.62f, 17, 180, 180, 180)))
+				//.ContinueWith(t => doMoveTo(t, new PlayerLocation(50, 5.62f, 17, 180, 180, 180)))
 				.ContinueWith(t => doSendCommand(t, "/test"))
 				.ContinueWith(t => doUseItem(t, new ItemBlock(new Stone(), 0) { Count = 1 }, new BlockCoordinates(22, 4, 42)))
 				.ContinueWith(t => Task.Delay(5000).Wait())
 				.ContinueWith(t => doSetSlot(t, 2, new ItemIronSword() { Count = 1 }, 0))
 				.ContinueWith(t => doSetSlot(t, 2, ItemFactory.GetItem(351, 4, 64), 1))
-				.ContinueWith(t =>
-				{
-					Random rnd = new Random();
-					while (true)
-					{
-						doMoveTo(t, new PlayerLocation(rnd.Next(10, 40), 5.62f, rnd.Next(-50, -10), 180, 180, 180));
-						doMoveTo(t, new PlayerLocation(50, 5.62f, 17, 180, 180, 180));
-						doMoveTo(t, new PlayerLocation(rnd.Next(40, 50), 5.62f, rnd.Next(0, 20), 180, 180, 180));
-					}
-				})
+				//.ContinueWith(t =>
+				//{
+				//	Random rnd = new Random();
+				//	while (true)
+				//	{
+				//		doMoveTo(t, new PlayerLocation(rnd.Next(10, 40), 5.62f, rnd.Next(-50, -10), 180, 180, 180));
+				//		//doMoveTo(t, new PlayerLocation(50, 5.62f, 17, 180, 180, 180));
+				//		doMoveTo(t, new PlayerLocation(rnd.Next(40, 50), 5.62f, rnd.Next(0, 20), 180, 180, 180));
+				//	}
+				//})
 				;
 
 			Console.WriteLine("<Enter> to exit!");
@@ -619,7 +619,7 @@ namespace MiNET.Client
 				}
 			}
 
-			Log.Warn($"Exit receive handler task for {Player.Username}");
+			//Log.Warn($"Exit receive handler task for {Player.Username}");
 			return Task.CompletedTask;
 		}
 
@@ -629,7 +629,7 @@ namespace MiNET.Client
 			Log.Warn("MTU Size: " + message.mtuSize);
 			Log.Warn("Client Endpoint: " + message.clientEndpoint);
 
-			_serverEndpoint = message.clientEndpoint;
+			//_serverEndpoint = message.clientEndpoint;
 
 			_mtuSize = message.mtuSize;
 			Thread.Sleep(100);
@@ -639,7 +639,7 @@ namespace MiNET.Client
 
 		private void HandleAck(byte[] receiveBytes, IPEndPoint senderEndpoint)
 		{
-			Log.Info("Ack");
+			//Log.Info("Ack");
 		}
 
 		private void HandleNak(byte[] receiveBytes, IPEndPoint senderEndpoint)
@@ -749,13 +749,13 @@ namespace MiNET.Client
 				return;
 			}
 
-			Log.Debug($"Handle package 0x{message.Id:X2} {message.GetType().Name}");
+			//Log.Debug($"Handle package 0x{message.Id:X2} {message.GetType().Name}");
 
 			if (typeof (McpeDisconnect) == message.GetType())
 			{
 				McpeDisconnect msg = (McpeDisconnect) message;
 				Log.InfoFormat("Disconnect {1}: {0}", msg.message, Username);
-				SendDisconnectionNotification();
+				//SendDisconnectionNotification();
 				StopClient();
 				return;
 			}
@@ -1076,12 +1076,12 @@ namespace MiNET.Client
 
 		private void OnMcpeMoveEntity(McpeMoveEntity message)
 		{
-			if (Entities.ContainsKey(message.entityId))
-			{
-			    Entity entity = Entities[message.entityId];
+			//if (Entities.ContainsKey(message.entityId))
+			//{
+			//    Entity entity = Entities[message.entityId];
 
-			    Log.Debug($"Entity move: Id={message.entityId}, Type={entity.EntityTypeId} - 0x{entity.EntityTypeId:x2}");
-			}
+			//    Log.Debug($"Entity move: Id={message.entityId}, Type={entity.EntityTypeId} - 0x{entity.EntityTypeId:x2}");
+			//}
 		}
 
 
@@ -1125,9 +1125,9 @@ namespace MiNET.Client
 
 			Log.Debug(sb.ToString());
 
-			McpeResourcePackClientResponse response = new McpeResourcePackClientResponse();
-			response.responseStatus = 3;
-			SendPackage(response);
+			//McpeResourcePackClientResponse response = new McpeResourcePackClientResponse();
+			//response.responseStatus = 3;
+			//SendPackage(response);
 
 			if (message.resourcepackinfos.Count != 0)
 			{
@@ -1139,7 +1139,7 @@ namespace MiNET.Client
 
 				McpeResourcePackClientResponse response = new McpeResourcePackClientResponse();
 				response.responseStatus = 2;
-				response.resourcepackidversions = resourceInfos;
+				//response.resourcepackidversions = resourceInfos;
 				SendPackage(response);
 			}
 			else
@@ -1171,14 +1171,14 @@ namespace MiNET.Client
 
 			Log.Debug(sb.ToString());
 
-			if (message.resourcepackidversions.Count != 0)
-			{
-				McpeResourcePackClientResponse response = new McpeResourcePackClientResponse();
-				response.responseStatus = 2;
-				response.resourcepackidversions = message.resourcepackidversions;
-				SendPackage(response);
-			}
-			else
+			//if (message.resourcepackidversions.Count != 0)
+			//{
+			//	McpeResourcePackClientResponse response = new McpeResourcePackClientResponse();
+			//	response.responseStatus = 2;
+			//	response.resourcepackidversions = message.resourcepackidversions;
+			//	SendPackage(response);
+			//}
+			//else
 			{
 				McpeResourcePackClientResponse response = new McpeResourcePackClientResponse();
 				response.responseStatus = 4;
@@ -1198,11 +1198,11 @@ namespace MiNET.Client
 
 		private void OnMcpeResourcePackChunkData(McpeResourcePackChunkData message)
 		{
-			string fileName = Path.GetTempPath() + "ResourcePackChunkData_" + Guid.NewGuid() + ".zip";
-			Log.Info("Writing ResourcePackChunkData to filename: " + fileName);
-			FileStream file = File.OpenWrite(fileName);
-			file.Write(message.payload, 0, message.payload.Length);
-			file.Close();
+			//string fileName = Path.GetTempPath() + "ResourcePackChunkData_" + Guid.NewGuid() + ".zip";
+			//Log.Info("Writing ResourcePackChunkData to filename: " + fileName);
+			//FileStream file = File.OpenWrite(fileName);
+			//file.Write(message.payload, 0, message.payload.Length);
+			//file.Close();
 
 			Log.Debug($"packageId={message.packageId}");
 			Log.Debug($"unknown1={message.chunkIndex}");
@@ -1228,7 +1228,7 @@ namespace MiNET.Client
 			{
 				dynamic json = JObject.Parse(message.commands);
 
-				if (Log.IsDebugEnabled) Log.Debug($"Command JSON:\n{json}");
+				//if (Log.IsDebugEnabled) Log.Debug($"Command JSON:\n{json}");
 				string fileName = Path.GetTempPath() + "AvailableCommands_" + Guid.NewGuid() + ".json";
 				Log.Info($"Writing commands to filename: {fileName}");
 				File.WriteAllText(fileName, message.commands);
@@ -1236,7 +1236,7 @@ namespace MiNET.Client
 			{
 				dynamic json = JObject.Parse(message.unknown);
 
-				if (Log.IsDebugEnabled) Log.Debug($"Command (unknown) JSON:\n{json}");
+				//if (Log.IsDebugEnabled) Log.Debug($"Command (unknown) JSON:\n{json}");
 			}
 		}
 
@@ -1269,7 +1269,7 @@ namespace MiNET.Client
 				Log.Warn($"{playerRecord.GetType()} Player: {playerRecord.DisplayName}, {playerRecord.EntityId}, {playerRecord.ClientUuid}");
 			}
 
-			Log.Debug($"\n{Package.HexDump(message.Bytes)}");
+			//Log.Debug($"\n{Package.HexDump(message.Bytes)}");
 		}
 
 		public void SendLogin(string username)
@@ -1312,7 +1312,7 @@ namespace MiNET.Client
 			{
 				ECDiffieHellmanPublicKey publicKey = CryptoUtils.CreateEcDiffieHellmanPublicKey(serverKey);
 				Log.Debug("ServerKey (b64):\n" + serverKey);
-				Log.Debug($"Cert:\n{publicKey.ToXmlString()}");
+				//Log.Debug($"Cert:\n{publicKey.ToXmlString()}");
 
 				Log.Debug($"RANDOM TOKEN (raw):\n{randomKeyToken}");
 
@@ -1329,7 +1329,7 @@ namespace MiNET.Client
 
 				byte[] secret = ecKey.DeriveKeyMaterial(publicKey);
 
-				Log.Debug($"SECRET KEY (b64):\n{Convert.ToBase64String(secret)}");
+				//Log.Debug($"SECRET KEY (b64):\n{Convert.ToBase64String(secret)}");
 				Log.Debug($"SECRET KEY (raw):\n{Encoding.UTF8.GetString(secret)}");
 
 				{
@@ -1367,9 +1367,9 @@ namespace MiNET.Client
 
 				Thread.Sleep(1250);
 				McpeClientToServerHandshake magic = new McpeClientToServerHandshake();
-				byte[] encodedMagic = magic.Encode();
-				McpeBatch batch = BatchUtils.CreateBatchPacket(encodedMagic, 0, encodedMagic.Length, CompressionLevel.Fastest, true);
-				batch.Encode();
+				//byte[] encodedMagic = magic.Encode();
+				//McpeBatch batch = BatchUtils.CreateBatchPacket(encodedMagic, 0, encodedMagic.Length, CompressionLevel.Fastest, true);
+				//batch.Encode();
 				SendPackage(magic);
 			}
 			catch (Exception e)
@@ -1407,31 +1407,31 @@ namespace MiNET.Client
 				_threadPool.QueueUserWorkItem(() => HandlePackage(batch));
 			}
 
-			payload = Compression.Decompress(payload);
+			//payload = Compression.Decompress(payload);
 
-			if (Log.IsDebugEnabled)
-				Log.Debug($"0x{payload[0]:x2}\n{Package.HexDump(payload)}");
+			//if (Log.IsDebugEnabled)
+			//	Log.Debug($"0x{payload[0]:x2}\n{Package.HexDump(payload)}");
 
-			try
-			{
-				Package newMessage = PackageFactory.CreatePackage(payload[0], payload, "mcpe") ?? new UnknownPackage(payload[0], payload);
-				TraceReceive(newMessage);
+			//try
+			//{
+			//	Package newMessage = PackageFactory.CreatePackage(payload[0], payload, "mcpe") ?? new UnknownPackage(payload[0], payload);
+			//	//TraceReceive(newMessage);
 
-				if (_processingThread == null)
-				{
-					HandlePackage(newMessage);
-				}
-				else
-				{
-					_threadPool.QueueUserWorkItem(() => HandlePackage(newMessage));
-				}
-			}
-			catch (Exception e)
-			{
-				Log.Error("Wrapper", e);
-			}
+			//	if (_processingThread == null)
+			//	{
+			//		HandlePackage(newMessage);
+			//	}
+			//	else
+			//	{
+			//		_threadPool.QueueUserWorkItem(() => HandlePackage(newMessage));
+			//	}
+			//}
+			//catch (Exception e)
+			//{
+			//	Log.Error("Wrapper", e);
+			//}
 
-			Task.Run(() => { HandlePackage(newMessage); });
+			//Task.Run(() => { HandlePackage(newMessage); });
 		}
 
 		public UserPermission UserPermission { get; set; }
@@ -1554,21 +1554,21 @@ Adventure settings
 			}
 
 
-			{
-				McpeContainerSetSlot setSlot = McpeContainerSetSlot.CreateObject();
-				setSlot.item = new MetadataSlot(new ItemStack(new ItemDiamondAxe(0), 1));
-				setSlot.windowId = 0;
-		              	setSlot.slot = 0;
-				SendPackage(setSlot);
-			}
-			{
-				McpePlayerEquipment eq = McpePlayerEquipment.CreateObject();
-				eq.entityId = _entityId;
-				eq.slot = 9;
-				eq.selectedSlot = 0;
-				eq.item = new MetadataSlot(new ItemStack(new ItemDiamondAxe(0), 1));
-				SendPackage(eq);
-			}
+			//{
+			//	McpeContainerSetSlot setSlot = McpeContainerSetSlot.CreateObject();
+			//	setSlot.item = new MetadataSlot(new ItemStack(new ItemDiamondAxe(0), 1));
+			//	setSlot.windowId = 0;
+			//	setSlot.slot = 0;
+			//	SendPackage(setSlot);
+			//}
+			//{
+			//	McpePlayerEquipment eq = McpePlayerEquipment.CreateObject();
+			//	eq.entityId = _entityId;
+			//	eq.slot = 9;
+			//	eq.selectedSlot = 0;
+			//	eq.item = new MetadataSlot(new ItemStack(new ItemDiamondAxe(0), 1));
+			//	SendPackage(eq);
+			//}
 		}
 
 		public void SendCraftingEvent()
@@ -1611,13 +1611,13 @@ Adventure settings
 
 				SendPackage(crafting);
 
-				{
-					McpeContainerSetSlot setSlot = McpeContainerSetSlot.CreateObject();
-					setSlot.item = new MetadataSlot(new ItemStack(new ItemBlock(new Block(5), 0), 4));
-					setSlot.windowId = 0;
-					setSlot.slot = 0;
-					SendPackage(setSlot);
-				}
+				//{
+				//	McpeContainerSetSlot setSlot = McpeContainerSetSlot.CreateObject();
+				//	setSlot.item = new MetadataSlot(new ItemStack(new ItemBlock(new Block(5), 0), 4));
+				//	setSlot.windowId = 0;
+				//	setSlot.slot = 0;
+				//	SendPackage(setSlot);
+				//}
 
 				{
 					McpeMobEquipment eq = McpeMobEquipment.CreateObject();
@@ -1711,7 +1711,7 @@ Adventure settings
 
 			writer.Flush();
 			file.Close();
-			Environment.Exit(0);
+			//Environment.Exit(0);
 		}
 
 		private void OnMcpeContainerSetData(Package msg)
@@ -1849,7 +1849,7 @@ Adventure settings
 		{
 			McpeSetEntityData msg = (McpeSetEntityData) message;
 			Log.DebugFormat("McpeSetEntityData Entity ID: {0}, Metadata: {1}", msg.runtimeEntityId, MetadataToCode(msg.metadata));
-			Log.Debug($"Package 0x{message.Id:X2}\n{Package.HexDump(message.Bytes)}");
+			//Log.Debug($"Package 0x{message.Id:X2}\n{Package.HexDump(message.Bytes)}");
 		}
 
 		public static string MetadataToCode(MetadataDictionary metadata)
@@ -2010,15 +2010,15 @@ Adventure settings
 		{
 			if (IsEmulator) return;
 
-			McpeAddItemEntity msg = (McpeAddItemEntity) message;
-			Log.DebugFormat("McpeAddEntity Entity ID: {0}", msg.entityId);
-			Log.DebugFormat("X: {0}", msg.x);
-			Log.DebugFormat("Y: {0}", msg.y);
-			Log.DebugFormat("Z: {0}", msg.z);
-			Log.DebugFormat("Velocity X: {0}", msg.speedX);
-			Log.DebugFormat("Velocity Y: {0}", msg.speedY);
-			Log.DebugFormat("Velocity Z: {0}", msg.speedZ);
-			Log.Info($"Item {msg.item}");
+			//McpeAddItemEntity msg = (McpeAddItemEntity) message;
+			//Log.DebugFormat("McpeAddEntity Entity ID: {0}", msg.entityId);
+			//Log.DebugFormat("X: {0}", msg.x);
+			//Log.DebugFormat("Y: {0}", msg.y);
+			//Log.DebugFormat("Z: {0}", msg.z);
+			//Log.DebugFormat("Velocity X: {0}", msg.speedX);
+			//Log.DebugFormat("Velocity Y: {0}", msg.speedY);
+			//Log.DebugFormat("Velocity Z: {0}", msg.speedZ);
+			//Log.Info($"Item {msg.item}");
 		}
 
 		private static void OnMcpeBlockEntityData(McpeBlockEntityData message)
@@ -2068,7 +2068,7 @@ StartGame:
 			Level.Version = 19133;
 			Level.GameType = message.gamemode;
 
-			ClientUtils.SaveLevel(_level);
+			//ClientUtils.SaveLevel(_level);
 
 			{
 				var packet = McpeRequestChunkRadius.CreateObject();
@@ -2094,7 +2094,7 @@ StartGame:
 		{
 			Thread.Sleep(50);
 			SendNewIncomingConnection();
-			_connectedPingTimer = new Timer(state => SendConnectedPing(), null, 1000, 1000);
+			//_connectedPingTimer = new Timer(state => SendConnectedPing(), null, 1000, 1000);
 			Thread.Sleep(50);
 			SendLogin(Username);
 		}
@@ -2109,7 +2109,7 @@ StartGame:
 
 			if (_chunks.TryAdd(new Tuple<int, int>(msg.chunkX, msg.chunkZ), true))
 			{
-				Log.Debug($"Chunk X={msg.chunkX}, Z={msg.chunkZ}, size={msg.chunkData.Length}, Count={++_numberOfChunks}");
+				//Log.Debug($"Chunk X={msg.chunkX}, Z={msg.chunkZ}, size={msg.chunkData.Length}, Count={++_numberOfChunks}");
 
 				try
 				{
@@ -2124,7 +2124,7 @@ StartGame:
 							Log.Debug($"Blockentity: {blockEntity.Value}");
 						}
 
-						ClientUtils.SaveChunkToAnvil(chunk);
+						//ClientUtils.SaveChunkToAnvil(chunk);
 					}
 				}
 				catch (Exception e)
@@ -2172,21 +2172,21 @@ StartGame:
 							              new UnknownPackage(internalBuffer[0], internalBuffer);
 							messages.Add(package);
 
-							if (Log.IsDebugEnabled) Log.Debug($"Batch: {package.GetType().Name} 0x{package.Id:x2}");
-							if (!(package is McpeFullChunkData)) Log.Debug($"Batch: {package.GetType().Name} 0x{package.Id:x2} \n{Package.HexDump(internalBuffer)}");
+							//if (Log.IsDebugEnabled) Log.Debug($"Batch: {package.GetType().Name} 0x{package.Id:x2}");
+							//if (!(package is McpeFullChunkData)) Log.Debug($"Batch: {package.GetType().Name} 0x{package.Id:x2} \n{Package.HexDump(internalBuffer)}");
 						}
 						catch (Exception e)
 						{
 							if (internalBuffer != null)
 								Log.Error($"Batch error while reading:\n{Package.HexDump(internalBuffer)}");
 							Log.Error("Batch processing", e);
-							throw;
+							//throw;
 						}
 					} while (destination.Position < destination.Length);
 				}
 			}
 
-			Log.Error($"Batch had {messages.Count} packets.");
+			//Log.Error($"Batch had {messages.Count} packets.");
 			if (messages.Count == 0) Log.Error($"Batch had 0 packets.");
 
 			foreach (var msg in messages)
@@ -2378,7 +2378,7 @@ StartGame:
 
 		public void SendOpenConnectionRequest2()
 		{
-			_clientGuid = new Random().Next() + new Random().Next();
+			//_clientGuid = new Random().Next() + new Random().Next();
 			var packet = new OpenConnectionRequest2()
 			{
 				remoteBindingAddress = _serverEndpoint,

@@ -111,7 +111,7 @@ namespace MiNET.Client
 				commandStep.currentStep = 0;
 				commandStep.isOutput = false;
 				commandStep.clientId = -1;
-				//commandStep.commandJson = @"{}";
+				commandStep.commandJson = @"{}";
 				//commandStep.unkown6 = @"{}";
 				commandStep.commandInputJson = "null\n";
 				commandStep.commandOutputJson = "null\n";
